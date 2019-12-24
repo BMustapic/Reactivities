@@ -1,20 +1,22 @@
 import React, { Fragment } from "react";
 import { Grid, List } from "semantic-ui-react";
 import { IActivity } from "../../../app/models/activity";
+import { ActivityList } from "./ActivityList";
 
 interface IProps {
-    activities: IActivity[]
+  activities: IActivity[];
 }
 
-export const ActivityDashboard: React.FC<IProps> = ({activities}) => {
+export const ActivityDashboard: React.FC<IProps> = ({ activities }) => {
   return (
     <Grid>
       <Grid.Column width={10}>
-        <List>
+        <ActivityList activities={activities}/>
+        {/* <List>
           {activities.map(activity => (
             <List.Item key={activity.id}>{activity.title}</List.Item>
           ))}
-        </List>
+        </List> */}
       </Grid.Column>
     </Grid>
   );
