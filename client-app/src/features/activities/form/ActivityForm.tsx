@@ -8,11 +8,14 @@ interface IProps {
   activity: IActivity;
 }
 
-const ActivityForm: React.FC<IProps> = ({
-  activity: initialFormState,
-}) => {
+const ActivityForm: React.FC<IProps> = ({ activity: initialFormState }) => {
   const activityStore = useContext(ActivityStore);
-  const {createActivity, editActivity, submitting, cancelFormOpen} = activityStore;
+  const {
+    createActivity,
+    editActivity,
+    submitting,
+    cancelFormOpen
+  } = activityStore;
 
   const initializeForm = () => {
     if (initialFormState) {
