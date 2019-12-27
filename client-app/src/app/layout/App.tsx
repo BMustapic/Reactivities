@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import agent from "../api/agent";
 import { Container } from "semantic-ui-react";
 import { IActivity } from "../models/activity";
 import { NavBar } from "../../features/nav/NavBar";
@@ -20,35 +20,33 @@ const App = () => {
   const handleOpenCreateForm = () => {
     setSelectedActivity(null);
     setEditMode(true);
-  }
+  };
 
   const handleCreateActivity = (activity: IActivity) => {
-    setActivities([...activities, activity])
+    setActivities([...activities, activity]);
     setSelectedActivity(activity);
     setEditMode(false);
-  }
+  };
 
   const handleEditActivity = (activity: IActivity) => {
-    setActivities([...activities.filter(a => a.id !== activity.id), activity])
+    setActivities([...activities.filter(a => a.id !== activity.id), activity]);
     setSelectedActivity(activity);
     setEditMode(false);
-  }
+  };
 
   const handleDeleteActivity = (id: string) => {
-    setActivities([...activities.filter(a => a.id !== id)])
-  }
+    setActivities([...activities.filter(a => a.id !== id)]);
+  };
 
   useEffect(() => {
-    axios
-      .get<IActivity[]>("http://localhost:5000/api/activities")
-      .then(response => {
-        let activities: IActivity[] = [];
-        response.data.forEach(activity => {
-          activity.date = activity.date.split('.')[0];
-          activities.push(activity);
-        })
-        setActivities(activities);
+    agent.Activities.list().then(response => {
+      let activities: IActivity[] = [];
+      response.forEach(activity => {
+        activity.date = activity.date.split(".")[0];
+        activities.push(activity);
       });
+      setActivities(activities);
+    });
   }, []);
 
   return (
