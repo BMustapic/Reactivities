@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 const ActivityDetails: React.FC = () => {
   const activityStore = useContext(ActivityStore);
   const {
-    selectedActivity: activity,
+    activity,
     openEditForm,
     cancelSelectedActivity
   } = activityStore;
