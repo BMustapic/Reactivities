@@ -21,7 +21,7 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<ActivityDto>> Details(Guid id)
         {
-            return await Mediator.Send(new Details.Query{ID = id});
+            return await Mediator.Send(new Details.Query { ID = id });
         }
 
         [HttpPost]
@@ -40,7 +40,13 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Unit>> Delete(Guid id)
         {
-            return await Mediator.Send(new Delete.Command{ID = id});
+            return await Mediator.Send(new Delete.Command { ID = id });
+        }
+
+        [HttpPost("{id}/attend")]
+        public async Task<ActionResult<Unit>> Attend(Guid id)
+        {
+            return await Mediator.Send(new Attend.Command { Id = id });
         }
     }
 }
