@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Application.Activities;
 
 namespace Domain
@@ -13,6 +14,8 @@ namespace Domain
         public DateTime Date { get; set; }
         public string City { get; set; }
         public string Venue { get; set; }
-        public ICollection<AttendeeDto> Attendees { get; set; }
+        
+        [JsonPropertyName("attendees")]
+        public ICollection<AttendeeDto> UserActivities { get; set; }
     }
 }
