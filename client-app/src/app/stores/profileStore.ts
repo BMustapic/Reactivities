@@ -17,8 +17,6 @@ export default class ProfileStore {
 
   @computed get isCurrentUser() {
     if (this.rootStore.userStore.user && this.profile) {
-      console.log("store", this.rootStore.userStore.user.username);
-      console.log("profile", this.profile.username);
       return this.rootStore.userStore.user.username === this.profile.username;
     } else {
       return false;
@@ -80,6 +78,24 @@ export default class ProfileStore {
         this.loading = false;
       });
       toast.error("Problem setting main photo");
+    }
+  };
+
+  @action deletePhoto = async (photo: IPhoto) => {
+    this.loading = true;
+    try {
+      await agent.Profiles.deletePhoto(photo.id);
+      runInAction("deleting photo", () => {
+        this.profile!.photos = this.profile!.photos.filter(
+          a => a.id !== photo.id
+        );
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction("delete photo error", () => {
+        this.loading = false;
+      });
+      toast.error(error);
     }
   };
 }
