@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import ProfileHeader from "./ProfileHeader";
+import { Grid } from "semantic-ui-react";
 
 const ProfilePage = () => {
-    return (
-        <div>
-            <h1>Profile page</h1>
-        </div>
-    )
-}
+  return (
+    <Grid>
+      <Grid.Column width={16}>
+        <ProfileHeader />
+      </Grid.Column>
+    </Grid>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
