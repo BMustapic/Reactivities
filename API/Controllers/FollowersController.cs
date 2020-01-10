@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Followers;
+using Application.Profiles;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,5 +15,9 @@ namespace API.Controllers
 
         [HttpDelete("{username}/follow")]
         public async Task<ActionResult<Unit>> Unfollow(string username) => await Mediator.Send(new Delete.Command { Username = username });
+
+        [HttpGet("{username}/follow")]
+        public async Task<ActionResult<List<Profile>>> GetFollowings(string username, string predicate) => await Mediator.Send(new List.Query { Username = username, Predicate = predicate });
+
     }
 }
