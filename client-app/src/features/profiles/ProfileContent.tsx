@@ -3,6 +3,7 @@ import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileDescription from "./ProfileDescription";
 import ProfileFollowings from "./ProfileFollowings";
+import ProfileActivities from "./ProfileActivities";
 
 interface IProps {
   setActiveTab: (activeIndex: any) => void;
@@ -19,7 +20,7 @@ const panes = [
   },
   {
     menuItem: "Activities",
-    render: () => <Tab.Pane>Activities content</Tab.Pane>
+    render: () => <ProfileActivities />
   },
   {
     menuItem: "Followers",
@@ -31,7 +32,7 @@ const panes = [
   }
 ];
 
-const ProfileContent: React.FC<IProps> = ({setActiveTab}) => {
+const ProfileContent: React.FC<IProps> = ({ setActiveTab }) => {
   return (
     <Tab
       menu={{ fluid: true, vertical: true }}

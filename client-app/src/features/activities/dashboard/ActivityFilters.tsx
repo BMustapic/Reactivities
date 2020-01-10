@@ -7,7 +7,6 @@ import { observer } from "mobx-react-lite";
 const ActivityFilters = () => {
   const rootStore = useContext(RootStoreContext);
   const { predicate, setPredicate } = rootStore.activityStore;
-  console.log('predicate', predicate);
   return (
     <Fragment>
       <Menu vertical size={"large"} style={{ width: "100%", marginTop: 50 }}>
