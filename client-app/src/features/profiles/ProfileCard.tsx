@@ -17,7 +17,7 @@ const ProfileCard: React.FC<IProps> = ({ profile }) => {
       <Card.Content extra>
         <div>
           <Icon name="user" />
-          {profile.followersCount == 1
+          {profile.followersCount === 1
             ? `${profile.followersCount} Follower`
             : `${profile.followersCount} Followers`}
         </div>
