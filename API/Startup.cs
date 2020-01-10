@@ -94,7 +94,7 @@ namespace API
                         {
                             var accessToken = context.Request.Query["access_token"];
                             var path = context.HttpContext.Request.Path;
-                            if (!String.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/caht")))
+                            if (!String.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat")))
                             {
                                 context.Token = accessToken;
                             }
