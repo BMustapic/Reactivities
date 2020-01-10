@@ -11,7 +11,6 @@ import {
   HubConnectionBuilder,
   LogLevel
 } from "@microsoft/signalr";
-import { URLSearchParams } from "url";
 
 const LIMIT = 2;
 
@@ -58,7 +57,7 @@ export default class ActivityStore {
 
   @action setPredicate = (predicate: string, value: string | Date) => {
     this.predicate.clear();
-    if (predicate != "all") {
+    if (predicate !== "all") {
       this.predicate.set(predicate, value);
     }
   };
