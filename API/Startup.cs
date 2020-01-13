@@ -42,7 +42,7 @@ namespace API
             services.AddDbContext<DataContext>(option =>
                         {
                             option.UseLazyLoadingProxies();
-                            option.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                         });
 
             ConfigureServices(services);
@@ -141,6 +141,20 @@ namespace API
             {
                 // app.UseDeveloperExceptionPage();
             }
+
+            app.UseXContentTypeOptions();
+            app.UseReferrerPolicy(opt => opt.NoReferrer());
+            app.UseXXssProtection(opt => opt.EnabledWithBlockMode());
+            app.UseXfo(opt => opt.Deny());
+            app.UseCspReportOnly(opt => opt
+                .BlockAllMixedContent()
+                .StyleSources(s => s.Self())
+                .FontSources(s => s.Self())
+                .FormActions(s => s.Self())
+                .FrameAncestors(s => s.Self())
+                .ImageSources(s => s.Self())
+                .ScriptSources(s => s.Self())
+            );
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
