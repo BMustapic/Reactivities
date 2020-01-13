@@ -141,6 +141,10 @@ namespace API
             {
                 // app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                // app.UseHsts();
+            }
 
             app.UseXContentTypeOptions();
             app.UseReferrerPolicy(opt => opt.NoReferrer());
