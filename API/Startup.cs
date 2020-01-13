@@ -37,13 +37,31 @@ namespace API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(option =>
-            {
-                option.UseLazyLoadingProxies();
-                option.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-            });
+                        {
+                            option.UseLazyLoadingProxies();
+                            option.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                        });
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(option =>
+                        {
+                            option.UseLazyLoadingProxies();
+                            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                        });
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", policy =>
